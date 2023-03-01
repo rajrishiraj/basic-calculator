@@ -4,12 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import org.mozilla.javascript.Context;
-import org.mozilla.javascript.Scriptable;
+
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener  {
 
@@ -70,7 +68,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         else if(buttonText.equals("=")){
             //processingCal.setText(resultTV.getText());
             String finalResult = processingCal.getText().toString();
-            result.setText(calculatedResult(finalResult));
+            ClaculatorData data = new ClaculatorData();
+            result.setText(data.calculatedResult(finalResult));
         }
         else if(buttonText.equals("C")){
             if(dataToCalculate.equals("0")){
@@ -84,25 +83,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         processingCal.setText(dataToCalculate);
+
     }
 
-    String calculatedResult(String data){
-        try {
-            Log.i("RISHI","in try block");
-            Context context = Context.enter();
-            context.setOptimizationLevel(-1);
-            Scriptable scriptable = context.initStandardObjects();
-            String finalResult = context.evaluateString(scriptable,data,"javascript",1,null).toString();
-            String removeZero = finalResult.substring(finalResult.length()-2);
-            if(removeZero.equals(".0")){
-                finalResult = finalResult.substring(0,finalResult.length()-2);
-                return finalResult;
-            }else {
-                return finalResult;
-            }
-
-        }catch (Exception e){
-            return e.toString();
-        }
-    }
 }
