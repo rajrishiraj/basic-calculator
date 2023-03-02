@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             result.setText(data.calculatedResult(finalResult));
         }
         else if(buttonText.equals("C")){
-            if(dataToCalculate.equals("0")){
+            if(dataToCalculate.equals("0") || dataToCalculate.equals("") ){
                     return;
             }else {
                 dataToCalculate = dataToCalculate.substring(0,dataToCalculate.length()-1);

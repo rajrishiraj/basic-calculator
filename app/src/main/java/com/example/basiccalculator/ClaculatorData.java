@@ -8,7 +8,6 @@ public class ClaculatorData {
 
     String calculatedResult(String data){
         try {
-            Log.i("RISHI","in try block");
             Context context = Context.enter();
             context.setOptimizationLevel(-1);
             Scriptable scriptable = context.initStandardObjects();
